@@ -1,34 +1,38 @@
+'''
+dotenv, nextcord bot, decorator
+'''
 import nextcord
 from nextcord.ext import commands
 
 from dotenv import load_dotenv
 import os
 
-from utils import load_extensions
-
-# bot是跟discord連接，intents是要求機器人的權限
+# bot是跟nextcord連接，intents是要求機器人的權限
 intents = nextcord.Intents.default()
 intents.message_content = True
-# # intents.members = True
-# intents = discord.Intents.all()
-
-# command_prefix是前綴符號，可以自由選擇($, #, &...)
 bot = commands.Bot(command_prefix = '!', intents = intents)
 
+# decoracor
 @bot.event
+# 當機器人完成啟動
 async def on_ready():
     print(f"目前登入身份: {bot.user}")
-    
-@bot.event
-async def on_member_join(member):
-    guild, name = member.guild, member.name
-    channel = nextcord.utils.get(guild.channels, name="general")
-    
-    await channel.send(f"哈嘍, {name}!")
 
+@bot.event
+# 當頻道有新訊息
+async def on_message(message):
+    # author = message.author
+    # content = message.content
+    author, content = message.author, message.content
+    
+    print(f'Message from {author}: {content}')
+    # 排除機器人本身的訊息，避免無限循環
+    if author.name == bot.user.name:
+        return
+    # 新訊息包含hello，回覆你好！
+    if "hello" in content.lower():
+        await message.channel.send("你好！")
 
 load_dotenv(override=True)
 API_KEY = os.getenv('DISCORD_API_KEY')
-        
-load_extensions(bot)
 bot.run(API_KEY)
