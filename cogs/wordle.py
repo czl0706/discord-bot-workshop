@@ -11,13 +11,16 @@ class Wordle(commands.Cog):
         self.answer = ''
         self.started = False
         
+        # 把wordlist.txt的內容讀入self.words
         with open('./assets/wordlist.txt', 'r', encoding='utf-8') as f:
             self.words = f.readlines()
             
     def start(self):
+        # 從self.words中隨機選一個字
         self.answer = random.choice(self.words)
         self.answer = self.answer.strip()
         self.started = True
+        # 作弊用
         print(f'答案是 {self.answer}')
         
     @in_specific_channel(channel_name)
@@ -66,9 +69,6 @@ class Wordle(commands.Cog):
         if result == '🟩 ' * len(self.answer):
             self.started = False
             await ctx.reply(f"恭喜{ctx.author.name}猜對了!")
-            
-            self.start()
-            await ctx.send('遊戲開始了')
 
 def setup(bot: commands.Bot):
     bot.add_cog(Wordle(bot))
