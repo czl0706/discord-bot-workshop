@@ -33,14 +33,14 @@ class GuessNum(commands.Cog):
             return
         
         if num == self.answer:
-            self.started = False
-            await ctx.reply(f"恭喜{ctx.author.name}猜對了!")
+            self.started = ...
+            await ctx.reply(...)
         elif num < self.answer:
-            self.lower_bound = max(self.lower_bound, num)
-            await ctx.reply(f"請猜一個介於{self.lower_bound}和{self.upper_bound}之間的數字")
+            self.lower_bound = ...
+            await ctx.reply(...)
         else:
-            self.upper_bound = min(self.upper_bound, num)
-            await ctx.reply(f"請猜一個介於{self.lower_bound}和{self.upper_bound}之間的數字")
+            self.upper_bound = ...
+            await ctx.reply(...)
 
 def setup(bot: commands.Bot):
     bot.add_cog(GuessNum(bot))

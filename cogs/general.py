@@ -1,7 +1,7 @@
 import nextcord
 from nextcord.ext import commands
 from utils import in_specific_channel
-import requests
+import time as t
 
 channel_name = 'general'
 
@@ -24,24 +24,12 @@ class General(commands.Cog):
         """Adds two numbers together."""
         await ctx.send(left + right)
         
-    def dog(self, ):
-        response = requests.get('https://dog.ceo/api/breeds/image/random')
-        image_link = response.json()['message']
-        return image_link
-        
-    @commands.Cog.listener()
-    async def on_message(self, message: nextcord.Message):
-        author, content = message.author, message.content
-        
-        # check if the message is from channel_name
-        if message.channel.name != channel_name:
-            return
-        
-        if author.name == self.bot.user.name:
-            return
-        
-        if any(x in content for x in ('狗', 'dog')):
-            message = await message.reply(self.dog())
+    @in_specific_channel(channel_name)
+    @commands.command()
+    async def time(self, ctx: commands.Context):
+        """顯示時間"""
+        time_now = t.strftime("%Y年%m月%d日 %H點%M分", t.localtime())
+        await ctx.send(f'現在時間: {time_now}')
         
 def setup(bot: commands.Bot):
     bot.add_cog(General(bot))
