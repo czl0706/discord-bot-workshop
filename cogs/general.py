@@ -31,6 +31,7 @@ class General(commands.Cog):
         await ctx.send(left + right)
     
     @in_specific_channel(channel_name)
+    @commands.command()
     async def bonk(self, ctx: commands.Context):
         card = random.choice(self.decks)
         
