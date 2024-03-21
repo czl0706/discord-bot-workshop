@@ -17,21 +17,28 @@ class Weather(commands.Cog):
     @commands.command()
     async def forecast(self, ctx: commands.Context):
         """新竹市天氣預報"""
-        response = requests.get(f'https://opendata.cwa.gov.tw/api/v1/rest/datastore/F-D0047-053?Authorization={API_KEY}&locationName=%E6%9D%B1%E5%8D%80&limit=10&format=JSON&elementName=T')
-        data = json.loads(response.text)
-        temp_data = data['records']['locations'][0]['location'][0]['weatherElement'][0]['time']
+        json_data = requests.get(f'https://opendata.cwa.gov.tw/api/v1/rest/datastore/F-D0047-053?Authorization={API_KEY}&locationName=%E6%9D%B1%E5%8D%80&limit=10&format=JSON&elementName=T').json()
 
+        # 不一定要照著做
+        
+        # 取得資料
+        temp_data = json_data['records']['locations'][0]['location'][0]['weatherElement'][0]['time']
+
+        # 格式化時間
         processed_data = [(
             datetime.datetime.strptime(data['dataTime'], '%Y-%m-%d %H:%M:%S'),
             int(data['elementValue'][0]['value'])
             ) for data in temp_data]
 
+        # 過濾時間，只取未來的時間
         filtered_data = [(
             data[0].strftime('%d號 %H點'), data[1]
             ) for data in processed_data if data[0] > datetime.datetime.now()]
         
+        # 只取前五筆
         filtered_data = filtered_data[:5]
 
+        # 回覆天氣預報
         await ctx.reply('\n'.join([f'{data[0]}: **{data[1]}°C**' for data in filtered_data]))
         
 def setup(bot: commands.Bot):
