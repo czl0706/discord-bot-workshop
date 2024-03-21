@@ -2,6 +2,7 @@ import nextcord
 from nextcord.ext import commands
 from utils import in_specific_channel
 
+import requests
 import random
 import json
 
@@ -11,8 +12,8 @@ class General(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         # 讀入卡片資料
-        ...:
-            self.decks = ...
+        with open('./assets/cards.json', 'r', encoding='utf-8') as f:
+            self.decks = json.load(f)
         
     @in_specific_channel(channel_name)
     @commands.command()
@@ -33,14 +34,34 @@ class General(commands.Cog):
     @commands.command()
     async def bonk(self, ctx: commands.Context):
         # 隨機選一張卡片
-        card = ...
+        card = random.choice(self.decks)
         
         # 取得卡片標題和圖片連結
-        title = ...
-        image_link = ...
+        title = card['title']
+        image_link = card['src']
         
         await ctx.send(f'{title}')
         await ctx.send(f'{image_link}')
+        
+    def dog(self, ):
+        json_data = ... # 使用requests.get()取得圖片連結
+        image_link = # 從json_data中取得圖片連結
+        return image_link
+        
+    @commands.Cog.listener()
+    async def on_message(self, message: nextcord.Message):
+        author, content = message.author, message.content
+        
+        # check if the message is from channel_name
+        if message.channel.name != channel_name:
+            return
+        
+        if author.name == self.bot.user.name:
+            return
+        
+        # 如果訊息中包含狗或dog，機器人會回覆一張狗的圖片
+        if ...:
+            message = await message.reply(self.dog())
         
 def setup(bot: commands.Bot):
     bot.add_cog(General(bot))
