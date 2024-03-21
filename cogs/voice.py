@@ -53,7 +53,8 @@ class Voice(commands.Cog):
 
         if vc is not None:
             try:
-                YouTube(f'https://youtu.be/{video_id}').streams.filter(only_audio=True).first() \
+                YouTube(f'https://youtu.be/{video_id}').streams \
+                    .filter(only_audio=True).first() \
                     .download(filename='./assets/music.mp3')
             except:
                 await ctx.reply('URL錯誤')
@@ -62,29 +63,9 @@ class Voice(commands.Cog):
             if vc.is_playing():
                 vc.stop()
             
-            vc.play(FFmpegPCMAudio('music.mp3'))
+            vc.play(FFmpegPCMAudio('./assets/music.mp3'))
         else:
-            await ctx.reply(datetime.now().strftime('請先加入語音頻道'))
-            
-    @commands.command()
-    async def play_playlist(self, ctx, *, list_id):
-        vc = ctx.voice_client
-
-        if vc is not None:
-            try:
-                playlist = Playlist(f'https://www.youtube.com/playlist?list={list_id}')
-                for url in playlist.video_urls:
-                    YouTube(url).streams.filter(only_audio=True).first().download(filename='music.mp3')
-                    await ctx.reply(f'正在播放{url}')
-                    vc.play(FFmpegPCMAudio('./assets/music.mp3'))
-                    # wait until the music is finished
-                    while vc.is_playing():
-                        await nextcord.sleep(1)
-            except:
-                await ctx.reply('URL錯誤')
-                return
-        else:
-            await ctx.reply(datetime.now().strftime('請先加入語音頻道'))
+            await ctx.reply('請先加入語音頻道')
         
 def setup(bot: commands.Bot):
     bot.add_cog(Voice(bot))
