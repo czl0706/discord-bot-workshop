@@ -1,7 +1,6 @@
 import nextcord
 from nextcord.ext import commands
 from utils import in_specific_channel
-import requests
 
 channel_name = 'general'
 
