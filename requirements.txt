@@ -1,2 +1,4 @@
 nextcord
 python-dotenv
+gTTS
+pytube
