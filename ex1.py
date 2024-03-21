@@ -29,7 +29,7 @@ async def on_message(message):
     # 排除機器人本身的訊息，避免無限循環
     if author.name == bot.user.name:
         return
-    # 新訊息包含hello，回覆你好！
+    # 當訊息包含hello，回覆"你好！"
     if "hello" in content.lower():
         await message.channel.send("你好！")
 
