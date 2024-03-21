@@ -12,11 +12,12 @@ class Wordle(commands.Cog):
         self.started = False
         
         # 把wordlist.txt的內容讀入self.words
-        ...
+        with open('./assets/wordlist.txt', 'r', encoding='utf-8') as f:
+            self.words = f.readlines()
             
     def start(self):
         # 從self.words中隨機選一個字
-        self.answer = ...
+        self.answer = random.choice(self.words)
         self.answer = self.answer.strip()
         self.started = True
         # 作弊用
@@ -57,11 +58,11 @@ class Wordle(commands.Cog):
         
         result = ''
         for i in range(len(self.answer)):
-            if ...: # 輸入跟答案一樣
+            if self.answer[i] == uesr_input[i]:
                 result += '🟩 '
-            ...:    # 輸入在答案中但位置不對
+            elif uesr_input[i] in self.answer:
                 result += '🟨 '
-            ...:    # 輸入不在答案中
+            else:
                 result += '⬛ '
                 
         await ctx.reply(result)
