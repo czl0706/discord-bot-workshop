@@ -7,7 +7,7 @@ from nextcord.ext import commands
 from dotenv import load_dotenv
 import os
 
-import time
+import time as t
 
 # client是跟nextcord連接，intents是要求機器人的權限
 intents = nextcord.Intents.default()
