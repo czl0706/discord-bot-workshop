@@ -1,6 +1,6 @@
 '''
 指令, type hint, docstring(!help), library name conflict
-https://discordpy.readthedocs.io/en/stable/api.html#event-reference
+https://docs.python.org/zh-tw/3.10/library/datetime.html#strftime-and-strptime-format-codes
 '''
 import nextcord
 from nextcord.ext import commands
