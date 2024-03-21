@@ -42,8 +42,8 @@ class General(commands.Cog):
         await ctx.send(f'{image_link}')
         
     def dog(self, ):
-        response = requests.get('https://dog.ceo/api/breeds/image/random')
-        image_link = response.json()['message']
+        json_data = requests.get('https://dog.ceo/api/breeds/image/random').json()
+        image_link = json_data['message']
         return image_link
         
     @commands.Cog.listener()
