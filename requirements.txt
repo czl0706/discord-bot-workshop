@@ -1,6 +1,0 @@
-nextcord
-python-dotenv
-requests
-gTTS
-pytube
-PyNaCl
