@@ -17,7 +17,8 @@ class Weather(commands.Cog):
     @commands.command()
     async def forecast(self, ctx: commands.Context):
         """新竹市天氣預報"""
-        json_data = requests.get(f'https://opendata.cwa.gov.tw/api/v1/rest/datastore/F-D0047-053?Authorization={API_KEY}&locationName=%E6%9D%B1%E5%8D%80&limit=10&format=JSON&elementName=T').json()
+        url = f'https://opendata.cwa.gov.tw/api/v1/rest/datastore/F-D0047-053?Authorization={API_KEY}&locationName=%E6%9D%B1%E5%8D%80&limit=10&format=JSON&elementName=T'
+        json_data = requests.get(url).json()
 
         # 不一定要照著做
         
