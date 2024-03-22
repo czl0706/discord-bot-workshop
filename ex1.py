@@ -30,7 +30,7 @@ async def on_message(message):
     if author.name == bot.user.name:
         return
     
-    message.channel.send("Hello, world!")
+    await message.channel.send("Hello, world!")
     
     # 將content轉為小寫，再判斷是否包含"hello"
     # if ...:
