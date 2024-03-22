@@ -35,7 +35,7 @@ class General(commands.Cog):
         # 隨機選一張照片
         cat = random.choice(self.cats)
         
-        # 取得照片標題和圖片連結
+        # 取得照片標題和圖片id
         tags = ...
         _id = ...
         
