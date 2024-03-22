@@ -24,6 +24,7 @@ class GuessNum(commands.Cog):
         self.started = True
         await ctx.reply("遊戲開始了，請輸入一個數字")
     
+    # ...代表要填的地方
     @in_specific_channel(channel_name)
     @commands.command()
     async def guess(self, ctx: commands.Context, num: int):
