@@ -11,9 +11,9 @@ channel_name = 'general'
 class General(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-        # 讀入卡片資料
-        with open('./assets/cards.json', 'r', encoding='utf-8') as f:
-            self.decks = json.load(f)
+        # 讀入資料
+        with open('./assets/cats.json', 'r', encoding='utf-8') as f:
+            self.cats = json.load(f)
         
     @in_specific_channel(channel_name)
     @commands.command()
