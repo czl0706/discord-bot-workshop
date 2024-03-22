@@ -28,13 +28,15 @@ class GuessNum(commands.Cog):
     @commands.command()
     async def guess(self, ctx: commands.Context, num: int):
         """猜數字""" 
+        author = ctx.author.name
+        
         if not self.started:
             await ctx.reply("遊戲還沒開始")
             return
         
         if num == self.answer:
             self.started = ...
-            await ctx.reply(...)
+            await ctx.reply(f"恭喜{author}猜對了!")
         elif num < self.answer:
             self.lower_bound = ...
             await ctx.reply(...)
