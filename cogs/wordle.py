@@ -57,11 +57,11 @@ class Wordle(commands.Cog):
         
         result = ''
         for i in range(len(self.answer)):
-            if ...: # 輸入的第i個字跟self.answer的第i個字相同
+            if ...: # uesr_input的第i個字跟self.answer的第i個字相同
                 result += '🟩 '
-            ...:    # 輸入在self.answer中，但位置不對
+            ...:    # uesr_input[i]在self.answer中，但位置不對
                 result += '🟨 '
-            ...:    # 輸入不在self.answer中
+            else:    # uesr_input[i]不在self.answer中
                 result += '⬛ '
                 
         await ctx.reply(result)
