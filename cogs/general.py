@@ -8,7 +8,7 @@ class General(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
     
-    # 範例指令: Hello
+    # 範例程式: Hello
     @in_specific_channel(channel_name)
     @commands.command()
     async def Hello(self, ctx: commands.Context):
@@ -18,10 +18,10 @@ class General(commands.Cog):
         # await ctx.send(f"Hello, {author}!")
         await ctx.reply(f"Hello, {author}!")
 
-    # add
+    # add: 參考ex2.py並且改成cog架構的程式
     ...
     
-    # time
+    # time: 參考ex2.py並且改成cog架構的程式
     ...
         
 def setup(bot: commands.Bot):
