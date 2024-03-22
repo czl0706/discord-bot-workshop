@@ -30,9 +30,9 @@ async def on_message(message):
     if author.name == bot.user.name:
         return
     
-    # 當訊息包含hello，回覆"你好！"
-    ...
-    await message.channel.send("你好！")
+    # 將content轉為小寫，再判斷是否包含"hello"
+    if ...: 
+        await message.channel.send("你好！")
 
 load_dotenv(override=True)
 API_KEY = os.getenv('DISCORD_API_KEY')
