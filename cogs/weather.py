@@ -27,12 +27,13 @@ class Weather(commands.Cog):
 
         # 格式化時間
         processed_data = [(
-            ... , ...
+            datetime.datetime.strptime(data['dataTime'], '%Y-%m-%d %H:%M:%S'),
+            int(data['elementValue'][0]['value'])
             ) for data in temp_data]
 
         # 過濾時間，只取未來的時間
         filtered_data = [(
-            ... , ...
+            data[0].strftime('%d號 %H點'), data[1]
             ) for data in processed_data if data[0] > datetime.datetime.now()]
         
         # 只取前五筆
