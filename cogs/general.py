@@ -33,10 +33,8 @@ class General(commands.Cog):
     @in_specific_channel(channel_name)
     @commands.command()
     async def bonk(self, ctx: commands.Context):
-        # 隨機選一張卡片
         card = random.choice(self.decks)
         
-        # 取得卡片標題和圖片連結
         title = card['title']
         image_link = card['src']
         
@@ -44,8 +42,8 @@ class General(commands.Cog):
         await ctx.send(f'{image_link}')
         
     def dog(self, ):
-        json_data = ... # 使用requests.get()取得圖片連結
-        image_link = # 從json_data中取得圖片連結
+        json_data = requests.get('https://dog.ceo/api/breeds/image/random').json()
+        image_link = json_data['message']
         return image_link
         
     @commands.Cog.listener()
@@ -59,8 +57,7 @@ class General(commands.Cog):
         if author.name == self.bot.user.name:
             return
         
-        # 如果訊息中包含狗或dog，機器人會回覆一張狗的圖片
-        if ...:
+        if any(x in content for x in ('狗', 'dog')):
             message = await message.reply(self.dog())
         
 def setup(bot: commands.Bot):
