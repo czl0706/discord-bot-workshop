@@ -35,12 +35,13 @@ class General(commands.Cog):
         # 隨機選一張照片
         cat = random.choice(self.cats)
         
-        # 取得卡片標題和圖片連結
+        # 取得照片標題和圖片連結
         tags = cat['tags']
         _id = cat['_id']
         
-        link = 'https://cataas.com/cat/' + _id + '.jpeg'
+        # 隨機選一個tag以及產生圖片連結
         tag = random.choice(tags)
+        link = 'https://cataas.com/cat/' + _id + '.jpeg'
         
         await ctx.send(tag)
         await ctx.send(link)
