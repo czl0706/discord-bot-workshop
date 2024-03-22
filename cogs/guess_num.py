@@ -39,8 +39,8 @@ class GuessNum(commands.Cog):
             self.started = ...
             await ctx.reply(f"恭喜{author}猜對了!")
         elif num < self.answer:
-            self.lower_bound = ...
-            await ctx.reply(...)
+            self.lower_bound = max(self.lower_bound, num)
+            await ctx.reply(f"請猜一個介於{self.lower_bound}和{self.upper_bound}之間的數字")
         else:
             self.upper_bound = ...
             await ctx.reply(...)
