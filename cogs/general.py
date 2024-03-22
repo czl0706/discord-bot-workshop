@@ -11,8 +11,8 @@ class General(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         # 讀入卡片資料
-        ...:
-            self.decks = ...
+        with open('./assets/cats.json', 'r', encoding='utf-8') as f:
+            self.cats = json.load(f)
         
     @in_specific_channel(channel_name)
     @commands.command()
@@ -31,16 +31,19 @@ class General(commands.Cog):
     
     @in_specific_channel(channel_name)
     @commands.command()
-    async def bonk(self, ctx: commands.Context):
-        # 隨機選一張卡片
-        card = ...
+    async def cat(self, ctx: commands.Context):
+        # 隨機選一張照片
+        cat = random.choice(self.cats)
         
         # 取得卡片標題和圖片連結
-        title = ...
-        image_link = ...
+        tags = cat['tags']
+        _id = cat['_id']
         
-        await ctx.send(f'{title}')
-        await ctx.send(f'{image_link}')
+        link = 'https://cataas.com/cat/' + _id + '.jpeg'
+        tag = random.choice(tags)
+        
+        await ctx.send(tag)
+        await ctx.send(link)
         
 def setup(bot: commands.Bot):
     bot.add_cog(General(bot))
