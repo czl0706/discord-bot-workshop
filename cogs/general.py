@@ -10,7 +10,7 @@ channel_name = 'general'
 class General(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-        # 讀入卡片資料
+        # 讀入資料
         with open('./assets/cats.json', 'r', encoding='utf-8') as f:
             self.cats = json.load(f)
         
@@ -36,8 +36,8 @@ class General(commands.Cog):
         cat = random.choice(self.cats)
         
         # 取得照片標題和圖片連結
-        tags = cat['tags']
-        _id = cat['_id']
+        tags = ...
+        _id = ...
         
         # 隨機選一個tag以及產生圖片連結
         tag = random.choice(tags)
