@@ -30,9 +30,11 @@ async def on_message(message):
     if author.name == bot.user.name:
         return
     
+    message.channel.send("Hello, world!")
+    
     # 將content轉為小寫，再判斷是否包含"hello"
-    if ...:
-        await message.channel.send(...)
+    # if ...:
+    #     await message.channel.send(...)
 
 load_dotenv(override=True)
 API_KEY = os.getenv('DISCORD_API_KEY')
