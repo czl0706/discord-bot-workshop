@@ -32,14 +32,19 @@ class General(commands.Cog):
     
     @in_specific_channel(channel_name)
     @commands.command()
-    async def bonk(self, ctx: commands.Context):
-        card = random.choice(self.decks)
+    async def cat(self, ctx: commands.Context):
+        # 隨機選一張照片
+        cat = random.choice(self.cats)
         
-        title = card['title']
-        image_link = card['src']
+        # 取得卡片標題和圖片連結
+        tags = cat['tags']
+        _id = cat['_id']
         
-        await ctx.send(f'{title}')
-        await ctx.send(f'{image_link}')
+        link = 'https://cataas.com/cat/' + _id + '.jpeg'
+        tag = random.choice(tags)
+        
+        await ctx.send(tag)
+        await ctx.send(link)
         
     def dog(self, ):
         json_data = requests.get('https://dog.ceo/api/breeds/image/random').json()
